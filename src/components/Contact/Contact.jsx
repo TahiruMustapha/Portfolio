@@ -2,21 +2,25 @@ import '../Contact/Contact.css'
 import { FaPhone} from "react-icons/fa";
 import { AiFillEnvironment, AiOutlineMail } from "react-icons/ai";
 import { ThemeContext } from '../../Context';
-import { useContext } from 'react';
-// import { useRef } from 'react';
+import { useContext, useState } from 'react';
+import emailjs from '@emailjs/browser';
+import { useRef } from 'react';
+
 const Contact = () => {
+    const  [done, setdone] = useState(false);
     const theme = useContext(ThemeContext);
     const darkMode = theme.state.darkMode;
-    // const formRef = useRef();
-    // const handleSubmit = (e) =>{
-    //     e.preventDefault();
-    //     emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_PUBLIC_KEY')
-    //   .then((result) => {
-    //       console.log(result.text);
-    //   }, (error) => {
-    //       console.log(error.text);
-    //   });
-    // }
+    const formRef = useRef();
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        emailjs.sendForm('service_s0fs23e', 'template_blyp1on', formRef.current, 'VTaW2ttihd_SfANEf')
+        .then((result) => {
+            console.log(result.text);
+            setdone(true);
+        }, (error) => {
+            console.log(error.text);
+        });
+    }
   return (
     <div className='contact'>
        <div className="c-bg"></div>
@@ -48,7 +52,7 @@ const Contact = () => {
                 <b>What's your story</b> Get in touch. Always 
              available for freelancing if the <br /> right project comes along me.
             </p>
-            <form>
+            <form ref={formRef} onSubmit={handleSubmit} >
                 <input style={{backgroundColor:darkMode && "#333"}} type="text" placeholder='Name' name='user_name' />
                 <p>
                 <input style={{backgroundColor:darkMode && "#333"}} type="text" placeholder='Subject' name='user_subject' /> 
@@ -56,7 +60,8 @@ const Contact = () => {
                 
                 <input style={{backgroundColor:darkMode && "#333"}} type="text" placeholder='Email' name='user_email' />
                  <textarea style={{backgroundColor:darkMode && "#333"}} name="user_message" placeholder='Message' ></textarea>
-                  <button>Submit</button>
+                  <button type='submit'>Submit</button>
+                  {done && "Message Recieved Thank You!! "}
             </form>
         </div>
 
