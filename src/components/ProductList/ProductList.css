@@ -24,12 +24,15 @@
 @media screen and (max-width:480px){
  .ProductList{
     padding: 10px;
+    margin-top: 2rem;
  } 
  .pl-text{
     width: 100%;
     /* background-color: red; */
     height: fit-content;
-    margin-top: 200px;
+    margin-top: 15rem;
+
+ 
  } 
  .pl-title{
     font-size: 30px;
@@ -37,5 +40,9 @@
  } 
  .pl-desc{
     /* display: none; */
+    line-height: 1.5rem;
+    /* background-color: rebeccapurple; */
+    padding: .8rem;
+
  }
 }
